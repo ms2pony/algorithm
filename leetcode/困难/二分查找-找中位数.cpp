@@ -250,12 +250,12 @@ public:
     }
 };
 
-int main()
-{
-    vector<int> nums1 = {1, 3, 10, 11};
-    vector<int> nums2 = {-1, 2, 4, 9};
+// int main()
+// {
+//     vector<int> nums1 = {1, 3, 10, 11};
+//     vector<int> nums2 = {-1, 2, 4, 9};
 
-    Solution sln = Solution();
-    double res = sln.findMedianSortedArrays1(nums1, nums2);
-    cout << res << endl;
-}
+//     Solution sln = Solution();
+//     double res = sln.findMedianSortedArrays1(nums1, nums2);
+//     cout << res << endl;
+// }

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.json": "jsonc",
+        "*.sage": "python",
+        "algorithm": "cpp"
+    }
+}

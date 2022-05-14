@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HeapSort1.cpp">
+    <ClCompile Include="NC7股票交易.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
