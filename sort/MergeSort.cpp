@@ -3,18 +3,21 @@
 #include <iostream>
 using namespace std;
 
-// ¹é²¢ÅÅĞò£º°ÑÊı¾İ·ÖÎªÁ½¶Î£¬´ÓÁ½¶ÎÖĞÖğ¸öÑ¡×îĞ¡µÄÔªËØÒÆÈëĞÂÊı¾İ¶ÎµÄÄ©Î²¡£¿É´ÓÉÏµ½ÏÂ»ò´ÓÏÂµ½ÉÏ½øĞĞ¡£
+// å½’å¹¶æ’åºï¼šæŠŠæ•°æ®åˆ†ä¸ºä¸¤æ®µï¼Œä»ä¸¤æ®µä¸­é€ä¸ªé€‰æœ€å°çš„å…ƒç´ ç§»å…¥æ–°æ•°æ®æ®µçš„æœ«å°¾ã€‚å¯ä»ä¸Šåˆ°ä¸‹æˆ–ä»ä¸‹åˆ°ä¸Šè¿›è¡Œã€‚
 
 /*****************
-	µü´ú°æ
+	è¿­ä»£ç‰ˆ
 *****************/
-//Õû”µ»ò¸¡üc”µ½Ô¿ÉÊ¹ÓÃ,ÈôÒªÊ¹ÓÃÎï¼ş(class)•r±ØíšÔO¶¨"Ğ¡ì¶"(<)µÄß\Ëã×Ó¹¦ÄÜ
-template<typename T>
-void merge_sort(T arr[], int len) {
-	T* a = arr;
-	T* b = new T[len];
-	for (int seg = 1; seg < len; seg += seg) {
-		for (int start = 0; start < len; start += seg + seg) {
+//æ•´æ•¸æˆ–æµ®é»æ•¸çš†å¯ä½¿ç”¨,è‹¥è¦ä½¿ç”¨ç‰©ä»¶(class)æ™‚å¿…é ˆè¨­å®š"å°æ–¼"(<)çš„é‹ç®—å­åŠŸèƒ½
+template <typename T>
+void merge_sort(T arr[], int len)
+{
+	T *a = arr;
+	T *b = new T[len];
+	for (int seg = 1; seg < len; seg += seg)
+	{
+		for (int start = 0; start < len; start += seg + seg)
+		{
 			int low = start, mid = min(start + seg, len), high = min(start + seg + seg, len);
 			int k = low;
 			int start1 = low, end1 = mid;
@@ -26,11 +29,12 @@ void merge_sort(T arr[], int len) {
 			while (start2 < end2)
 				b[k++] = a[start2++];
 		}
-		T* temp = a;
+		T *temp = a;
 		a = b;
 		b = temp;
 	}
-	if (a != arr) {	//ÒòÎªÖ®Ç°aºÍbÒ»Ö±ÔÚ½»»»£¬ÏÖÔÚÒªÉ¾³ıÖ®Ç°bËùÖ¸ÏòµÄÊı×é£¬ËùÒÔÒªÈ·¶¨ÄÄ¸öÖ¸ÕëÖ¸ÏòµÄÊÇÔ­À´µÄbËùÖ¸ÏòµÄÊı×é
+	if (a != arr)
+	{ //å› ä¸ºä¹‹å‰aå’Œbä¸€ç›´åœ¨äº¤æ¢ï¼Œç°åœ¨è¦åˆ é™¤ä¹‹å‰bæ‰€æŒ‡å‘çš„æ•°ç»„ï¼Œæ‰€ä»¥è¦ç¡®å®šå“ªä¸ªæŒ‡é’ˆæŒ‡å‘çš„æ˜¯åŸæ¥çš„bæ‰€æŒ‡å‘çš„æ•°ç»„
 		for (int i = 0; i < len; i++)
 			b[i] = a[i];
 		b = a;
@@ -39,10 +43,11 @@ void merge_sort(T arr[], int len) {
 }
 
 /*****************
-	µİ¹é°æ
+	é€’å½’ç‰ˆ
 *****************/
-template<typename T>
-void merge_sort_recursive(T arr[], T reg[], int start, int end) {
+template <typename T>
+void merge_sort_recursive(T arr[], T reg[], int start, int end)
+{
 	if (start >= end)
 		return;
 	int len = end - start, mid = (len >> 1) + start;
@@ -61,16 +66,17 @@ void merge_sort_recursive(T arr[], T reg[], int start, int end) {
 		arr[k] = reg[k];
 }
 
-//Õû”µ»ò¸¡üc”µ½Ô¿ÉÊ¹ÓÃ,ÈôÒªÊ¹ÓÃÎï¼ş(class)•r±ØíšÔO¶¨"Ğ¡ì¶"(<)µÄß\Ëã×Ó¹¦ÄÜ
-//template<typename T>
-//void merge_sort(T arr[], const int len) {
+//æ•´æ•¸æˆ–æµ®é»æ•¸çš†å¯ä½¿ç”¨,è‹¥è¦ä½¿ç”¨ç‰©ä»¶(class)æ™‚å¿…é ˆè¨­å®š"å°æ–¼"(<)çš„é‹ç®—å­åŠŸèƒ½
+// template<typename T>
+// void merge_sort(T arr[], const int len) {
 //	T* reg = new T[len];
 //	merge_sort_recursive(arr, reg, 0, len - 1);
 //	delete[] reg;
 //}
 
-int main() {
-	int arr[] = { 3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6 };
+int main()
+{
+	int arr[] = {3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6};
 	int len = (int)sizeof(arr) / sizeof(*arr);
 
 	merge_sort(arr, len);

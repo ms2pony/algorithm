@@ -2,59 +2,70 @@
 #include <algorithm>
 using namespace std;
 
-//£¨×î´ó¶Ñ£¬ÓĞĞòÇø£©£¬ÓĞĞòÇøÊÇ´ÓÄ©Î²¿ªÊ¼Éú³É
-void heap_sort(int arr[], int len) {
+//ï¼ˆæœ€å¤§å †ï¼Œæœ‰åºåŒºï¼‰ï¼Œæœ‰åºåŒºæ˜¯ä»æœ«å°¾å¼€å§‹ç”Ÿæˆ
+void heap_sort(int arr[], int len)
+{
 	int start = 0, end = len - 1, current = 0;
 	int max_child;
 
-	//³õÊ¼»¯¶Ñ, todo
-	for (int i = len / 2 - 1; i >=0; i--) {
-			current = i;
-			//2.Ò»´ÎÒÔ¸ù½ÚµãÎª¶ÔÏóµÄÏòÏÂµ÷Õû
-			while (current <= len / 2 - 1) {	//µ±Ç°´ı¼ì²éµÄ½ÚµãÎªÒ¶×Ó½ÚµãÊ±£¬½áÊøÑ­»·
-				max_child = 2 * current + 1; //×óº¢×Ó
-				//2.1ÕÒ³öÁ½¸ö×Ó½ÚµãÖĞ×î´óµÄ½Úµã£¬»¹Òª¿¼ÂÇÖ»ÓĞÒ»¸öº¢×Ó½ÚµãµÄÇé¿ö
-				if (arr[2 * current + 1] < arr[2 * current + 2] && arr[2 * current + 2] <= end) {
-					max_child += 1;
-				}
-				if (arr[max_child] > arr[current]) {
-					swap(arr[max_child], arr[current]);
-					current = max_child;
-				}
-				else {
-					break;
-				}
+	//åˆå§‹åŒ–å †, todo
+	for (int i = len / 2 - 1; i >= 0; i--)
+	{
+		current = i;
+		// 2.ä¸€æ¬¡ä»¥æ ¹èŠ‚ç‚¹ä¸ºå¯¹è±¡çš„å‘ä¸‹è°ƒæ•´
+		while (current <= len / 2 - 1)
+		{								 //å½“å‰å¾…æ£€æŸ¥çš„èŠ‚ç‚¹ä¸ºå¶å­èŠ‚ç‚¹æ—¶ï¼Œç»“æŸå¾ªç¯
+			max_child = 2 * current + 1; //å·¦å­©å­
+			// 2.1æ‰¾å‡ºä¸¤ä¸ªå­èŠ‚ç‚¹ä¸­æœ€å¤§çš„èŠ‚ç‚¹ï¼Œè¿˜è¦è€ƒè™‘åªæœ‰ä¸€ä¸ªå­©å­èŠ‚ç‚¹çš„æƒ…å†µ
+			if (arr[2 * current + 1] < arr[2 * current + 2] && arr[2 * current + 2] <= end)
+			{
+				max_child += 1;
 			}
+			if (arr[max_child] > arr[current])
+			{
+				swap(arr[max_child], arr[current]);
+				current = max_child;
+			}
+			else
+			{
+				break;
+			}
+		}
 	}
 
-	//ÏòÏÂµ÷Õû¶Ñ£¬Ñ­»·£¬Ñ­»·½áÊøµÄÌõ¼ş
-	while (start < end) {	//°üÀ¨Ö»Ê£Ò»¸öÔªËØµÄÇé¿ö
-		//1.¸ù½ÚµãºÍÄ©Î²ÔªËØ½»»»
+	//å‘ä¸‹è°ƒæ•´å †ï¼Œå¾ªç¯ï¼Œå¾ªç¯ç»“æŸçš„æ¡ä»¶
+	while (start < end)
+	{ //åŒ…æ‹¬åªå‰©ä¸€ä¸ªå…ƒç´ çš„æƒ…å†µ
+		// 1.æ ¹èŠ‚ç‚¹å’Œæœ«å°¾å…ƒç´ äº¤æ¢
 		swap(arr[start], arr[end]);
 		end -= 1;
 
 		current = start;
-		//2.Ò»´ÎÒÔ¸ù½ÚµãÎª¶ÔÏóµÄÏòÏÂµ÷Õû
-		while (current<=end/2-1) {	//µ±Ç°´ı¼ì²éµÄ½ÚµãÎªÒ¶×Ó½ÚµãÊ±£¬½áÊøÑ­»·
-			max_child = 2 * current + 1; //×óº¢×Ó
-			//2.1ÕÒ³öÁ½¸ö×Ó½ÚµãÖĞ×î´óµÄ½Úµã£¬»¹Òª¿¼ÂÇÖ»ÓĞÒ»¸öº¢×Ó½ÚµãµÄÇé¿ö
-			if (arr[2 * current + 1] < arr[2 * current + 2] && arr[2 * current + 2] <= end) {
+		// 2.ä¸€æ¬¡ä»¥æ ¹èŠ‚ç‚¹ä¸ºå¯¹è±¡çš„å‘ä¸‹è°ƒæ•´
+		while (current <= end / 2 - 1)
+		{								 //å½“å‰å¾…æ£€æŸ¥çš„èŠ‚ç‚¹ä¸ºå¶å­èŠ‚ç‚¹æ—¶ï¼Œç»“æŸå¾ªç¯
+			max_child = 2 * current + 1; //å·¦å­©å­
+			// 2.1æ‰¾å‡ºä¸¤ä¸ªå­èŠ‚ç‚¹ä¸­æœ€å¤§çš„èŠ‚ç‚¹ï¼Œè¿˜è¦è€ƒè™‘åªæœ‰ä¸€ä¸ªå­©å­èŠ‚ç‚¹çš„æƒ…å†µ
+			if (arr[2 * current + 1] < arr[2 * current + 2] && arr[2 * current + 2] <= end)
+			{
 				max_child += 1;
 			}
-			if (arr[max_child] > arr[current]) {
+			if (arr[max_child] > arr[current])
+			{
 				swap(arr[max_child], arr[current]);
 				current = max_child;
 			}
-			else {
+			else
+			{
 				break;
 			}
 		}
-		
 	}
 }
 
-int main() {
-	int arr[] = { 3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6 };
+int main()
+{
+	int arr[] = {3, 5, 3, 0, 8, 6, 1, 5, 8, 6, 2, 4, 9, 4, 7, 0, 1, 8, 9, 7, 3, 1, 2, 5, 9, 7, 4, 0, 2, 6};
 	int len = (int)sizeof(arr) / sizeof(*arr);
 	heap_sort(arr, len);
 	for (int i = 0; i < len; i++)

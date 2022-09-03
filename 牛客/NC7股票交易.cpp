@@ -1,10 +1,10 @@
-//ÎÊÌâÃèÊö£º
-//¼ÙÉèÄãÓÐÒ»¸öÊý×é£¬ÆäÖÐµÚi¸öÔªËØÊÇ¹ÉÆ±ÔÚµÚiÌìµÄ¼Û¸ñ¡£
-//ÄãÓÐÒ»´ÎÂòÈëºÍÂô³öµÄ»ú»á¡£(Ö»ÓÐÂòÈëÁË¹ÉÆ±ÒÔºó²ÅÄÜÂô³ö)¡£ÇëÄãÉè¼ÆÒ»¸öËã·¨À´¼ÆËã¿ÉÒÔ»ñµÃµÄ×î´óÊÕÒæ¡£
+//é—®é¢˜æè¿°ï¼š
+//å‡è®¾ä½ æœ‰ä¸€ä¸ªæ•°ç»„ï¼Œå…¶ä¸­ç¬¬iä¸ªå…ƒç´ æ˜¯è‚¡ç¥¨åœ¨ç¬¬iå¤©çš„ä»·æ ¼ã€‚
+//ä½ æœ‰ä¸€æ¬¡ä¹°å…¥å’Œå–å‡ºçš„æœºä¼šã€‚(åªæœ‰ä¹°å…¥äº†è‚¡ç¥¨ä»¥åŽæ‰èƒ½å–å‡º)ã€‚è¯·ä½ è®¾è®¡ä¸€ä¸ªç®—æ³•æ¥è®¡ç®—å¯ä»¥èŽ·å¾—çš„æœ€å¤§æ”¶ç›Šã€‚
 
 #include <iostream>
 #include <algorithm>
-#include<vector>
+#include <vector>
 using namespace std;
 
 class Solution {

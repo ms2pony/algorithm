@@ -3,55 +3,58 @@
 #include <iostream>
 using namespace std;
 /*
-£¨Ğ¡Êı£¬»ù×¼ÔªËØ£¬´óÊı£©¡£ÔÚÇø¼äÖĞËæ»úÌôÑ¡Ò»¸öÔªËØ×÷»ù×¼£¬½«Ğ¡ÓÚ»ù×¼µÄÔªËØ·ÅÔÚ»ù×¼Ö®Ç°£¬´óÓÚ»ù×¼µÄÔªËØ·ÅÔÚ»ù×¼Ö®ºó£¬ÔÙ·Ö±ğ¶ÔĞ¡ÊıÇøÓë´óÊıÇø½øĞĞÅÅĞò¡£
-¿ìËÙÅÅĞòË¼Â·£º
-1. Ñ¡È¡µÚÒ»¸öÊıÎª»ù×¼
-2. ½«±È»ù×¼Ğ¡µÄÊı½»»»µ½Ç°Ãæ£¬±È»ù×¼´óµÄÊı½»»»µ½ºóÃæ
-3. ¶Ô×óÓÒÇø¼äÖØ¸´µÚ¶ş²½£¬Ö±µ½¸÷Çø¼äÖ»ÓĞÒ»¸öÊı
+ï¼ˆå°æ•°ï¼ŒåŸºå‡†å…ƒç´ ï¼Œå¤§æ•°ï¼‰ã€‚åœ¨åŒºé—´ä¸­éšæœºæŒ‘é€‰ä¸€ä¸ªå…ƒç´ ä½œåŸºå‡†ï¼Œå°†å°äºåŸºå‡†çš„å…ƒç´ æ”¾åœ¨åŸºå‡†ä¹‹å‰ï¼Œå¤§äºåŸºå‡†çš„å…ƒç´ æ”¾åœ¨åŸºå‡†ä¹‹åï¼Œå†åˆ†åˆ«å¯¹å°æ•°åŒºä¸å¤§æ•°åŒºè¿›è¡Œæ’åºã€‚
+å¿«é€Ÿæ’åºæ€è·¯ï¼š
+1. é€‰å–ç¬¬ä¸€ä¸ªæ•°ä¸ºåŸºå‡†
+2. å°†æ¯”åŸºå‡†å°çš„æ•°äº¤æ¢åˆ°å‰é¢ï¼Œæ¯”åŸºå‡†å¤§çš„æ•°äº¤æ¢åˆ°åé¢
+3. å¯¹å·¦å³åŒºé—´é‡å¤ç¬¬äºŒæ­¥ï¼Œç›´åˆ°å„åŒºé—´åªæœ‰ä¸€ä¸ªæ•°
 */
 
 // ----------------------------------------------------
 
-// ¿ìËÙÅÅĞò£¨µİ¹é£©
-void QuickSort(vector<int>& v, int low, int high) {
-    if (low >= high)		// ½áÊø±êÖ¾
+// å¿«é€Ÿæ’åºï¼ˆé€’å½’ï¼‰
+void QuickSort(vector<int> &v, int low, int high)
+{
+    if (low >= high) // ç»“æŸæ ‡å¿—
         return;
-    int first = low;		// µÍÎ»ÏÂ±ê
-    int last = high;		// ¸ßÎ»ÏÂ±ê
-    int key = v[first];		// ÉèµÚÒ»¸öÎª»ù×¼
+    int first = low;    // ä½ä½ä¸‹æ ‡
+    int last = high;    // é«˜ä½ä¸‹æ ‡
+    int key = v[first]; // è®¾ç¬¬ä¸€ä¸ªä¸ºåŸºå‡†
 
     while (first < last)
     {
-        // ½«±ÈµÚÒ»¸öĞ¡µÄÒÆµ½Ç°Ãæ
+        // å°†æ¯”ç¬¬ä¸€ä¸ªå°çš„ç§»åˆ°å‰é¢
         while (first < last && v[last] >= key)
             last--;
         if (first < last)
             v[first++] = v[last];
 
-        // ½«±ÈµÚÒ»¸ö´óµÄÒÆµ½ºóÃæ
+        // å°†æ¯”ç¬¬ä¸€ä¸ªå¤§çš„ç§»åˆ°åé¢
         while (first < last && v[first] <= key)
             first++;
         if (first < last)
             v[last--] = v[first];
     }
-    // »ù×¼ÖÃÎ»
+    // åŸºå‡†ç½®ä½
     v[first] = key;
-    // Ç°°ëµİ¹é
+    // å‰åŠé€’å½’
     QuickSort(v, low, first - 1);
-    // ºó°ëµİ¹é
+    // ååŠé€’å½’
     QuickSort(v, first + 1, high);
 }
 
 // ----------------------------------------------------
 
-// Ä£°åÊµÏÖ¿ìËÙÅÅĞò£¨µİ¹é£©
+// æ¨¡æ¿å®ç°å¿«é€Ÿæ’åºï¼ˆé€’å½’ï¼‰
 template <typename T>
-void quick_sort_recursive(T arr[], int start, int end) {
+void quick_sort_recursive(T arr[], int start, int end)
+{
     if (start >= end)
         return;
     T mid = arr[end];
     int left = start, right = end - 1;
-    while (left < right) {
+    while (left < right)
+    {
         while (arr[left] < mid && left < right)
             left++;
         while (arr[right] >= mid && left < right)
@@ -61,29 +64,31 @@ void quick_sort_recursive(T arr[], int start, int end) {
     if (arr[left] >= arr[end])
         std::swap(arr[left], arr[end]);
     else
+        // rightæŒ‡é’ˆæ²¡åŠ¨è¿‡çš„æƒ…å†µ
         left++;
     quick_sort_recursive(arr, start, left - 1);
     quick_sort_recursive(arr, left + 1, end);
 }
-template <typename T> //Õû”µ»ò¸¡üc”µ½Ô¿ÉÊ¹ÓÃ,ÈôÒªÊ¹ÓÃÎï¼ş(class)•r±ØíšÔO¶¨"Ğ¡ì¶"(<)¡¢"´óì¶"(>)¡¢"²»Ğ¡ì¶"(>=)µÄß\Ëã×Ó¹¦ÄÜ
-void quick_sort(T arr[], int len) {
+template <typename T> //æ•´æ•¸æˆ–æµ®é»æ•¸çš†å¯ä½¿ç”¨,è‹¥è¦ä½¿ç”¨ç‰©ä»¶(class)æ™‚å¿…é ˆè¨­å®š"å°æ–¼"(<)ã€"å¤§æ–¼"(>)ã€"ä¸å°æ–¼"(>=)çš„é‹ç®—å­åŠŸèƒ½
+void quick_sort(T arr[], int len)
+{
     quick_sort_recursive(arr, 0, len - 1);
 }
 
 // ----------------------------------------------------
 
-// Ä£°åÊµÏÖ¿ìËÙÅÅĞò£¨µü´ú£©
-//struct Range {
+// æ¨¡æ¿å®ç°å¿«é€Ÿæ’åºï¼ˆè¿­ä»£ï¼‰
+// struct Range {
 //    int start, end;
 //    Range(int s = 0, int e = 0) {
 //        start = s, end = e;
 //    }
 //};
-//template <typename T> // Õû”µ»ò¸¡üc”µ½Ô¿ÉÊ¹ÓÃ,ÈôÒªÊ¹ÓÃÎï¼ş(class)•r±ØíšÔO¶¨"Ğ¡ì¶"(<)¡¢"´óì¶"(>)¡¢"²»Ğ¡ì¶"(>=)µÄß\Ëã×Ó¹¦ÄÜ
-//void quick_sort(T arr[], const int len) {
+// template <typename T> // æ•´æ•¸æˆ–æµ®é»æ•¸çš†å¯ä½¿ç”¨,è‹¥è¦ä½¿ç”¨ç‰©ä»¶(class)æ™‚å¿…é ˆè¨­å®š"å°æ–¼"(<)ã€"å¤§æ–¼"(>)ã€"ä¸å°æ–¼"(>=)çš„é‹ç®—å­åŠŸèƒ½
+// void quick_sort(T arr[], const int len) {
 //    if (len <= 0)
-//        return; // ±ÜÃâlenµÈì¶Ø“Öµ•rĞû¸æ¶Ñ¯Bê‡ÁĞ®”™C
-//    // r[]Ä£”M¶Ñ¯B,pé”µÁ¿,r[p++]épush,r[--p]épopÇÒÈ¡µÃÔªËØ
+//        return; // é¿å…lenç­‰æ–¼è² å€¼æ™‚å®£å‘Šå †ç–Šé™£åˆ—ç•¶æ©Ÿ
+//    // r[]æ¨¡æ“¬å †ç–Š,pç‚ºæ•¸é‡,r[p++]ç‚ºpush,r[--p]ç‚ºpopä¸”å–å¾—å…ƒç´ 
 //    Range r[len];
 //    int p = 0;
 //    r[p++] = Range(0, len - 1);
@@ -107,10 +112,11 @@ void quick_sort(T arr[], int len) {
 //    }
 //}
 
-int main() {
-    vector<int> int_vec = { 8, 9, 10, 1, 3, 2, 4, 6, 7, 5 };
+int main()
+{
+    vector<int> int_vec = {8, 9, 10, 1, 3, 2, 4, 6, 7, 5};
     int int_array[10] = {8, 9, 10, 1, 3, 2, 4, 6, 7, 5};
-    quick_sort(int_array,10);
+    quick_sort(int_array, 10);
 
     /*for (size_t i = 0; i < int_vec.size(); ++i) {
         cout << int_vec.at(i) << "; ";
@@ -120,7 +126,8 @@ int main() {
     /*for (size_t i = 0; i < int_vec.size(); ++i) {
         cout << int_vec[i] << "; ";
     }*/
-    for (size_t i = 0; i < 10; ++i) {
+    for (size_t i = 0; i < 10; ++i)
+    {
         cout << int_array[i] << "; ";
     }
     cout << endl;
