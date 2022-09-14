@@ -9,3 +9,5 @@ out
 .vs
 t*/
 x64
+a.out
+t?.*
